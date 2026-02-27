@@ -49,10 +49,10 @@ exports.syncBooksDebug = async (req, res) => {
     log(`DEBUG: GOOGLE_API_KEY value: ${process.env.GOOGLE_API_KEY ? 'SET' : 'UNSET'}`);
 
     // Fallback if env var fails
-    const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY || 'AIzaSyAxS3zcRljmlkzNgYLsYb8remae572AIAI';
+    const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
-    if (!process.env.GOOGLE_API_KEY) {
-        log('WARNING: Using hardcoded API key fallback to bypass env issue.');
+    if (!GOOGLE_API_KEY) {
+        log('WARNING: GOOGLE_API_KEY is not set. Sync may fail or be rate-limited.');
     }
 
     const categories = [
