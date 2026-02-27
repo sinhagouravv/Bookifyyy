@@ -58,15 +58,11 @@ const ReturnBookModal = ({ isOpen, onClose, user, books = [], onReturnSuccess })
             overdueDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
             // Fine Calculation: 40% of book cost per day
-            // Default book price if not available? Assuming book.price exists or default to something safe/error?
-            // The prompt says "40% of the cost of the book". 
-            // We'll use book.price (from backend/database). If missing, maybe fallback or handling needed.
-            // Let's assume book.price is available in the object (it usually is in `orders`).
-            // If price is missing, user might return for free or error? Let's check `orders` structure later if needed, but proceeding with `book.price`.
-            // Note: `book.price` might be string or number.
-            const price = parseFloat(book.price) || 0;
+            // Default book price if not available
+            const BOOK_PRICE = 2;
+            const price = parseFloat(book.price) || BOOK_PRICE;
             if (price > 0) {
-                fineAmount = overdueDays * (price * 0.40);
+                fineAmount = Math.ceil(overdueDays * (price * 0.40));
             }
         }
 
@@ -285,12 +281,13 @@ const ReturnBookModal = ({ isOpen, onClose, user, books = [], onReturnSuccess })
                                                 {new Date(book.dueDate) < new Date() ? (
                                                     // Calculate fine for display
                                                     (() => {
+                                                        const BOOK_PRICE = 2;
                                                         const overdueDays = Math.ceil(Math.abs(new Date() - new Date(book.dueDate)) / (1000 * 60 * 60 * 24));
-                                                        const fine = overdueDays * ((parseFloat(book.price) || 0) * 0.40);
+                                                        const fine = Math.ceil(overdueDays * ((parseFloat(book.price) || BOOK_PRICE) * 0.40));
                                                         return (
                                                             <>
                                                                 <AlertCircle size={12} />
-                                                                Pay Fine (₹{fine.toFixed(0)})
+                                                                Pay Fine (₹{fine})
                                                             </>
                                                         );
                                                     })()
