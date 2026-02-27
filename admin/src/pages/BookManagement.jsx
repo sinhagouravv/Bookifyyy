@@ -154,7 +154,7 @@ const BookManagement = () => {
                     className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl transition-all shadow-lg shadow-indigo-500/20 font-medium active:scale-95"
                 >
                     <Plus size={20} />
-                    Add New Book
+                    Add Book
                 </button>
             </div>
 
