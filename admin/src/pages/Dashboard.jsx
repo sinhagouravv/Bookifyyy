@@ -86,7 +86,7 @@ const Dashboard = () => {
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="mb-10 flex justify-between items-end">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Dashboard Overview</h1>
+                    <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Dashboard </h1>
                     <p className="text-gray-500 mt-2 text-lg">Detailed analysis of your library's performance.</p>
                 </div>
             </div>
